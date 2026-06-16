@@ -2,9 +2,9 @@
 
 Intent-aware command discovery and safety checks for humans and AI agents.
 
-CommandGraph is an open-source, advanced `apropos`-style tool for Linux
-terminals. It maps natural-language intent to relevant commands, examples,
-templates, and local safety checks.
+CommandGraph is an open-source LatentOps project and an advanced
+`apropos`-style tool for Linux terminals. It maps natural-language intent to
+relevant commands, examples, templates, and local safety checks.
 
 ## Goals
 
@@ -144,3 +144,14 @@ commandgraph/
   examples/
   tests/
 ```
+
+## Contributing
+
+Contributions should keep CommandGraph local-first, explainable, and safe by
+default. See [CONTRIBUTING.md](CONTRIBUTING.md) for command-card, risk-rule,
+testing, and pull request requirements.
+
+## License
+
+CommandGraph is licensed under the Apache License 2.0. See [LICENSE](LICENSE)
+and [NOTICE](NOTICE).

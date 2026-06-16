@@ -8,8 +8,8 @@ version = "0.1.0"
 description = "Intent-aware command discovery and safety checks for humans and AI agents."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
-authors = [{ name = "CommandGraph Maintainers" }]
+license = { text = "Apache-2.0" }
+authors = [{ name = "LatentOps" }]
 dependencies = []
 
 [project.scripts]

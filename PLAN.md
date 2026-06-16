@@ -1,6 +1,7 @@
 # CommandGraph Plan
 
-CommandGraph is an open-source, advanced `apropos`-style Linux terminal tool.
+CommandGraph is an open-source LatentOps project and an advanced
+`apropos`-style Linux terminal tool.
 
 The project should stay local-first, lightweight, explainable, and useful to developers without requiring a cloud account.
 
@@ -315,22 +316,12 @@ Before separating CommandGraph into its own repository, define the public projec
 
 ### License
 
-Use a permissive open-source license unless there is a clear reason not to.
-
-Recommended options:
-
-- Apache-2.0 if patent protection and broad adoption matter.
-- MIT if maximum simplicity matters.
-
-Current recommendation:
-
 Use Apache-2.0 for CommandGraph because it gives clearer patent protections while still being permissive.
 
 ### Contribution Model
 
-Add contributor documentation before public launch:
+Contributor documentation should cover:
 
-- `CONTRIBUTING.md`
 - command-card schema documentation
 - test requirements for new command cards
 - review rules for risk labels
