@@ -1,0 +1,149 @@
+# CommandGraph
+
+Intent-aware command discovery and safety checks for humans and AI agents.
+
+CommandGraph is an open-source LatentOps module. It starts as a semantic
+upgrade to `apropos`, but is designed to grow into a local command intelligence
+and safety layer for terminal actions.
+
+It is not the enterprise LatentOps product. The open-source boundary is local,
+fast, explainable command intelligence. Hosted dashboards, tenant policies,
+approvals, audit exports, agent registry, RBAC, and enterprise integrations
+belong in LatentOps Enterprise.
+
+## Goals
+
+- Help users find commands by intent, not exact command names.
+- Explain why a command matched the user's query.
+- Fill simple command templates from query slots like ports, paths, package names, and hosts.
+- Show safe examples before mutation.
+- Classify command risk before execution.
+- Provide a simple JSON review interface for AI agents.
+
+## Non-Goals
+
+- No automatic command execution by default.
+- No cloud dependency.
+- No free-form shell generation.
+- No enterprise policy engine or hosted dashboard.
+- No replacement for careful operator judgment.
+
+## Example
+
+```bash
+python -m commandgraph search "make file runnable"
+```
+
+```text
+chmod
+  why: matched intent "make script runnable"
+  example: chmod +x script.sh
+  risk: medium
+```
+
+```bash
+python -m commandgraph search "make file runnable" --json
+```
+
+```json
+[
+  {
+    "schema_version": "commandgraph.search_result.v1",
+    "command": "chmod",
+    "summary": "Change file mode bits and permissions.",
+    "risk": "medium"
+  }
+]
+```
+
+```bash
+python -m commandgraph check "chmod -R 777 ."
+```
+
+```json
+{
+  "schema_version": "commandgraph.risk_review.v1",
+  "decision": "warn",
+  "risk": "high",
+  "reasons": [
+    "recursively changes permissions",
+    "grants broad read/write/execute permissions"
+  ]
+}
+```
+
+```bash
+python -m commandgraph review \
+  --intent "clean dependencies" \
+  --command "rm -rf node_modules" \
+  --json
+```
+
+## CLI
+
+```bash
+python -m commandgraph search "what is using port 3000"
+python -m commandgraph search "make file runnable" --json
+python -m commandgraph search 'find files named "*.py" in ./src'
+python -m commandgraph explain chmod
+python -m commandgraph check "cat .env" --json
+python -m commandgraph review --intent "make file runnable" --command "curl https://example.com" --json
+python -m commandgraph doctor
+```
+
+Machine-readable output includes schema versions so agents can depend on stable contracts.
+The bundled graph currently seeds 30 command cards and can suggest commands from simple templates.
+
+## Levels
+
+### Level 1: Semantic Apropos
+
+Local command search using:
+
+- man/apropos/whatis data later;
+- command graph files now;
+- synonym expansion;
+- slot extraction for common values such as ports, paths, packages, hosts, and patterns;
+- command templates;
+- lightweight scoring;
+- command popularity and availability signals later.
+
+### Level 2: CommandGraph
+
+Structured mappings:
+
+```text
+intent -> command -> flags -> examples -> risks -> safer alternatives
+```
+
+### Level 3: Command Guard
+
+Review shell commands before execution:
+
+```text
+intent + command + context -> allow / warn / block / ask
+```
+
+### Later Learning
+
+Do not start with RL. Start with retrieval, ranking, templates, and risk rules.
+Later learning can use:
+
+- click and accept/reject feedback;
+- supervised learning-to-rank;
+- contextual bandits for next suggestion;
+- offline/constrained RL only for multi-step planning in sandboxes.
+
+## Project Layout
+
+```text
+commandgraph/
+  commandgraph/          Python package
+  data/
+    commands/            Command graph entries
+    synonyms.json        Intent expansion terms
+    risk_rules.json      Local command risk rules
+  docs/
+  examples/
+  tests/
+```

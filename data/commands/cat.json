@@ -1,0 +1,11 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "cat",
+  "summary": "Print and concatenate file contents.",
+  "aliases": ["print file", "show file", "read file"],
+  "intents": ["show file contents", "print a file", "read a small file"],
+  "default_risk": "low",
+  "risk_tags": ["inspection", "file_read", "secret_exposure"],
+  "examples": [{"command": "cat README.md", "explanation": "Print README.md to the terminal."}],
+  "templates": [{"command": "cat {path}", "description": "Print a file to the terminal."}]
+}

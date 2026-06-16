@@ -1,0 +1,9 @@
+{
+  "intent": "clean dependencies",
+  "command": "rm -rf node_modules",
+  "context": {
+    "cwd": "/project/app",
+    "agent": "coding-agent"
+  }
+}
+

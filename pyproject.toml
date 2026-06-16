@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "commandgraph"
+version = "0.1.0"
+description = "Intent-aware command discovery and safety checks for humans and AI agents."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "LatentOps" }]
+dependencies = []
+
+[project.scripts]
+cmdgraph = "commandgraph.cli:main"
+
+[tool.setuptools]
+packages = ["commandgraph"]
+
+[tool.setuptools.package-data]
+commandgraph = []
+

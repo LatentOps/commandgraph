@@ -1,0 +1,39 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "git",
+  "summary": "Track source code history and collaborate through repositories.",
+  "aliases": ["version control", "repository", "commit"],
+  "intents": [
+    "commit changes",
+    "see changed files",
+    "push branch",
+    "revert code",
+    "inspect history"
+  ],
+  "default_risk": "medium",
+  "risk_tags": ["source_control", "history_rewrite"],
+  "examples": [
+    {
+      "command": "git status --short",
+      "explanation": "Show changed files concisely."
+    },
+    {
+      "command": "git diff",
+      "explanation": "Inspect unstaged changes."
+    }
+  ],
+  "templates": [
+    {
+      "command": "git status --short",
+      "description": "Show changed files concisely."
+    },
+    {
+      "command": "git log --oneline --decorate --graph -n 20",
+      "description": "Inspect recent repository history."
+    },
+    {
+      "command": "git switch {branch}",
+      "description": "Switch to a branch."
+    }
+  ]
+}

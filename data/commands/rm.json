@@ -1,0 +1,33 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "rm",
+  "summary": "Remove files or directories.",
+  "aliases": ["delete", "remove"],
+  "intents": [
+    "delete a file",
+    "remove a directory",
+    "clean generated files"
+  ],
+  "default_risk": "high",
+  "risk_tags": ["destructive_delete", "filesystem_write"],
+  "examples": [
+    {
+      "command": "rm old.log",
+      "explanation": "Remove a single file."
+    },
+    {
+      "command": "rm -rf build/",
+      "explanation": "Recursively remove a build directory. Inspect the path first."
+    }
+  ],
+  "templates": [
+    {
+      "command": "rm {path}",
+      "description": "Remove one file. Inspect the path first."
+    },
+    {
+      "command": "rm -rf {path}",
+      "description": "Recursively remove a path. High risk; inspect first."
+    }
+  ]
+}
