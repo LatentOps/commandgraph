@@ -2,14 +2,9 @@
 
 Intent-aware command discovery and safety checks for humans and AI agents.
 
-CommandGraph is an open-source LatentOps module. It starts as a semantic
-upgrade to `apropos`, but is designed to grow into a local command intelligence
-and safety layer for terminal actions.
-
-It is not the enterprise LatentOps product. The open-source boundary is local,
-fast, explainable command intelligence. Hosted dashboards, tenant policies,
-approvals, audit exports, agent registry, RBAC, and enterprise integrations
-belong in LatentOps Enterprise.
+CommandGraph is an open-source, advanced `apropos`-style tool for Linux
+terminals. It maps natural-language intent to relevant commands, examples,
+templates, and local safety checks.
 
 ## Goals
 
@@ -25,7 +20,6 @@ belong in LatentOps Enterprise.
 - No automatic command execution by default.
 - No cloud dependency.
 - No free-form shell generation.
-- No enterprise policy engine or hosted dashboard.
 - No replacement for careful operator judgment.
 
 ## Example
@@ -88,11 +82,14 @@ python -m commandgraph search 'find files named "*.py" in ./src'
 python -m commandgraph explain chmod
 python -m commandgraph check "cat .env" --json
 python -m commandgraph review --intent "make file runnable" --command "curl https://example.com" --json
+python -m commandgraph index
 python -m commandgraph doctor
 ```
 
 Machine-readable output includes schema versions so agents can depend on stable contracts.
-The bundled graph currently seeds 30 command cards and can suggest commands from simple templates.
+The bundled graph currently seeds 30 command cards, can suggest commands from
+simple templates, and can merge an optional local man-page index built from
+`apropos` or `man -k`.
 
 ## Levels
 
@@ -100,8 +97,8 @@ The bundled graph currently seeds 30 command cards and can suggest commands from
 
 Local command search using:
 
-- man/apropos/whatis data later;
-- command graph files now;
+- bundled command graph files;
+- optional local man-page data from `apropos` or `man -k`;
 - synonym expansion;
 - slot extraction for common values such as ports, paths, packages, hosts, and patterns;
 - command templates;

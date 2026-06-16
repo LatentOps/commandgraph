@@ -32,17 +32,17 @@ RL may fit later when the system has:
 Even then, use constrained RL over a safe command graph, not free-form shell
 generation.
 
-## LatentOps Boundary
+## Project Scope
 
 CommandGraph can review terminal commands locally.
 
-LatentOps Enterprise owns:
+CommandGraph does not provide:
 
-- organization policy;
-- approvals;
-- hosted audit logs;
-- incidents;
-- dashboard;
-- agent registry;
-- production integrations.
+- account management;
+- team analytics;
+- centralized command governance;
+- remote command execution services.
+
+The core system should remain a local Linux command discovery and safety
+review tool.
 

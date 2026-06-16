@@ -1,0 +1,11 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "pip",
+  "summary": "Install and manage Python packages.",
+  "aliases": ["python package", "install python package", "pip install"],
+  "intents": ["install python package", "install package with pip", "show python packages"],
+  "default_risk": "medium",
+  "risk_tags": ["package_install", "network_access"],
+  "examples": [{"command": "python -m pip install requests", "explanation": "Install a Python package."}],
+  "templates": [{"command": "python -m pip install {package}", "description": "Install a Python package."}]
+}

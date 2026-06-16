@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 from typing import Sequence
 
 from .data import data_health, find_command
+from .indexer import DEFAULT_INDEX_PATH, build_index, build_index_from_lines
 from .review import review_command
 from .risk import check_command
 from .search import search
@@ -66,7 +68,7 @@ def print_explain(command_name: str, as_json: bool = False) -> int:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="cmdgraph",
+        prog="commandgraph",
         description="Intent-aware command discovery and safety checks.",
     )
     subparsers = parser.add_subparsers(dest="command_name", required=True)
@@ -94,6 +96,16 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     doctor_parser = subparsers.add_parser("doctor", help="Check local CommandGraph data.")
     doctor_parser.add_argument("--json", action="store_true")
+
+    index_parser = subparsers.add_parser(
+        "index",
+        help="Build a local command index from apropos or man -k output.",
+    )
+    index_parser.add_argument("--source", choices=["apropos", "man-k"], default="apropos")
+    index_parser.add_argument("--query", default=".")
+    index_parser.add_argument("--input", help="Read saved apropos/man -k output from a file.")
+    index_parser.add_argument("--output", default=str(DEFAULT_INDEX_PATH))
+    index_parser.add_argument("--json", action="store_true")
 
     args = parser.parse_args(argv)
 
@@ -143,5 +155,33 @@ def main(argv: Sequence[str] | None = None) -> int:
             print(f"duplicate_commands: {len(health['duplicate_commands'])}")
             print(f"ok: {str(health['ok']).lower()}")
         return 0 if health["ok"] else 1
+
+    if args.command_name == "index":
+        output = Path(args.output)
+        try:
+            if args.input:
+                with Path(args.input).open("r", encoding="utf-8") as handle:
+                    result = build_index_from_lines(
+                        handle.read().splitlines(),
+                        path=output,
+                        source="file",
+                    )
+            else:
+                result = build_index(path=output, source=args.source, query=args.query)
+        except (OSError, RuntimeError, ValueError) as exc:
+            payload = {"error": "index_failed", "message": str(exc)}
+            if args.json:
+                print(json.dumps(payload, indent=2))
+            else:
+                print(f"index failed: {exc}")
+            return 1
+
+        if args.json:
+            print(json.dumps(result.as_dict(), indent=2))
+        else:
+            print(f"indexed: {result.entry_count}")
+            print(f"skipped: {result.skipped_count}")
+            print(f"path: {result.path}")
+        return 0
 
     return 1

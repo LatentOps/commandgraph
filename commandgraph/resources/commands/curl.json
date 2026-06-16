@@ -1,0 +1,26 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "curl",
+  "summary": "Transfer data from or to a URL.",
+  "aliases": ["http request", "download url", "fetch url"],
+  "intents": [
+    "download a url",
+    "make an http request",
+    "check an endpoint",
+    "fetch a web page"
+  ],
+  "default_risk": "medium",
+  "risk_tags": ["network_access", "remote_content"],
+  "examples": [
+    {
+      "command": "curl -I https://example.com",
+      "explanation": "Fetch only response headers."
+    }
+  ],
+  "templates": [
+    {
+      "command": "curl -I {url}",
+      "description": "Fetch response headers for a URL."
+    }
+  ]
+}

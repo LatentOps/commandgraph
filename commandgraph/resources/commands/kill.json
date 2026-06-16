@@ -1,0 +1,25 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "kill",
+  "summary": "Send a signal to a process.",
+  "aliases": ["stop process", "terminate process", "signal process"],
+  "intents": [
+    "stop a process",
+    "kill process by pid",
+    "terminate a running process"
+  ],
+  "default_risk": "medium",
+  "risk_tags": ["process_termination"],
+  "examples": [
+    {
+      "command": "kill <PID>",
+      "explanation": "Ask a process to terminate. Confirm the PID first."
+    }
+  ],
+  "templates": [
+    {
+      "command": "kill <PID>",
+      "description": "Terminate a process after confirming its PID."
+    }
+  ]
+}

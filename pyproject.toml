@@ -9,15 +9,16 @@ description = "Intent-aware command discovery and safety checks for humans and A
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "LatentOps" }]
+authors = [{ name = "CommandGraph Maintainers" }]
 dependencies = []
 
 [project.scripts]
+commandgraph = "commandgraph.cli:main"
 cmdgraph = "commandgraph.cli:main"
 
 [tool.setuptools]
 packages = ["commandgraph"]
 
 [tool.setuptools.package-data]
-commandgraph = []
+commandgraph = ["resources/**/*.json"]
 

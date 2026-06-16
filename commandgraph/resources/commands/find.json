@@ -1,0 +1,26 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "find",
+  "summary": "Search for files and directories under a path.",
+  "aliases": ["search files", "locate files", "find files"],
+  "intents": [
+    "find files named config",
+    "search for a file",
+    "find files by name",
+    "find files in a directory"
+  ],
+  "default_risk": "low",
+  "risk_tags": ["inspection", "filesystem_metadata"],
+  "examples": [
+    {
+      "command": "find . -name \"*.py\"",
+      "explanation": "Find Python files below the current directory."
+    }
+  ],
+  "templates": [
+    {
+      "command": "find {path} -name \"{pattern}\"",
+      "description": "Find files matching a name pattern under a path."
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 # CommandGraph Plan
 
-CommandGraph is the open-source terminal intelligence module for LatentOps.
+CommandGraph is an open-source, advanced `apropos`-style Linux terminal tool.
 
-It is not the enterprise LatentOps product. The open-source scope should stay local-first, lightweight, explainable, and useful to developers without requiring a cloud account or managed policy system.
+The project should stay local-first, lightweight, explainable, and useful to developers without requiring a cloud account.
 
 ## Positioning
 
@@ -16,7 +16,7 @@ The larger idea:
 
 > Intent-aware command discovery and command safety for humans and AI agents.
 
-This gives LatentOps an open-source wedge without open-sourcing the enterprise runtime control product.
+This makes CommandGraph useful as a standalone command discovery and safety tool.
 
 ## What Stays Open Source
 
@@ -31,9 +31,9 @@ Open-source CommandGraph should include:
 - Agent-friendly JSON output.
 - Test fixtures and benchmarks for command search and risk review.
 
-## Product Boundary
+## Product Scope
 
-CommandGraph open source:
+CommandGraph:
 
 - Understands terminal command intent.
 - Finds useful commands.
@@ -41,7 +41,6 @@ CommandGraph open source:
 - Gives local safety review for shell commands.
 - Provides a clean integration surface for agents.
 
-CommandGraph should be useful on its own while keeping a clean integration path for broader LatentOps workflows later.
 
 ## Level 1: Semantic Apropos
 
@@ -165,7 +164,7 @@ Implementation:
 - Rules for package install and system mutation.
 - JSON schema for agent integrations.
 
-This is the strongest bridge into LatentOps.
+This is the strongest bridge from command discovery into local command safety.
 
 ## Level 4: Agent Integration
 
@@ -306,9 +305,8 @@ If RL is ever used, it should operate over a constrained command graph, not free
    - `commandgraph index`
    - `commandgraph doctor`
 
-10. Keep the repo separable.
+10. Keep the repo self-contained.
 
-   Avoid importing from the main LatentOps app.
    Keep package metadata, tests, examples, and docs self-contained inside `commandgraph/`.
 
 ## Open Source Requirements
@@ -321,12 +319,12 @@ Use a permissive open-source license unless there is a clear reason not to.
 
 Recommended options:
 
-- Apache-2.0 if patent protection and enterprise-friendly adoption matter.
+- Apache-2.0 if patent protection and broad adoption matter.
 - MIT if maximum simplicity matters.
 
 Current recommendation:
 
-Use Apache-2.0 for CommandGraph because it is enterprise-friendly and gives clearer patent protections while still being permissive.
+Use Apache-2.0 for CommandGraph because it gives clearer patent protections while still being permissive.
 
 ### Contribution Model
 
@@ -444,30 +442,26 @@ Integrations to support:
 
 The first version should work with curated data alone, then enrich results when local man-page tools are available.
 
-### Open-Core Boundary
+### Project Boundary
 
-Keep the boundary clear.
+Keep the scope clear.
 
-Open-source CommandGraph can include:
+CommandGraph can include:
 
 - local search
 - local command graph
 - local command review
 - basic risk taxonomy
 - agent-friendly JSON
-- simple local policy hooks
 
 Do not include:
 
-- hosted policy dashboard
-- organization approval workflows
-- tenant administration
-- enterprise audit exports
-- managed integrations
+- account management
 - team analytics
-- centralized agent governance
+- centralized command governance
+- remote command execution services
 
-This prevents the open-source project from becoming the enterprise LatentOps product while still making it useful and credible.
+This keeps the project focused on local command discovery, explanation, and safety review.
 
 ### Community Standards
 
@@ -665,7 +659,7 @@ The public roadmap should be cleaner than this internal plan and should focus on
 - known limitations
 - contribution areas
 
-Keep enterprise LatentOps roadmap items out of the open-source roadmap unless they are already public.
+Keep the public roadmap focused on the standalone Linux command-discovery tool.
 
 ### Naming And Branding
 
@@ -674,17 +668,14 @@ Decide the public repo name before launch.
 Options:
 
 - `commandgraph`
-- `latentops-commandgraph`
 - `semantic-apropos`
 - `aproposx`
 
 Recommended:
 
-Use `commandgraph` for the project name and mention LatentOps in the description:
+Use `commandgraph` for the project name:
 
-> CommandGraph by LatentOps: intent-aware command discovery and safety review for humans and AI agents.
-
-This keeps the project standalone while still connecting it to LatentOps.
+> CommandGraph: intent-aware command discovery and safety review for Linux terminals.
 
 ## First Milestone
 
@@ -730,13 +721,13 @@ Make it agent-ready:
 - MCP or stdio integration.
 - Agent examples.
 - Safety-focused evaluation set.
-- Basic policy hooks without enterprise features.
+- Optional local integration hooks.
 
 Success criteria:
 
 - A coding agent can call CommandGraph before shell execution.
 - CommandGraph can warn or block dangerous terminal actions locally.
-- The open-source module clearly supports the broader LatentOps runtime safety thesis.
+- The project clearly improves local command discovery and safety review.
 
 ## Research Direction
 
@@ -754,4 +745,4 @@ Potential research questions:
 - Which risk categories are most important for terminal-based AI agents?
 - How often do agents propose commands that do not match the user's stated intent?
 
-This research should connect to LatentOps without exposing enterprise code.
+This research should stay focused on local command discovery and safety review.

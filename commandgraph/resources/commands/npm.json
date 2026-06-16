@@ -1,0 +1,14 @@
+{
+  "schema_version": "commandgraph.command_card.v1",
+  "command": "npm",
+  "summary": "Manage JavaScript packages and scripts.",
+  "aliases": ["node package manager", "install package", "run script"],
+  "intents": ["install npm package", "run package script", "update node dependencies"],
+  "default_risk": "medium",
+  "risk_tags": ["package_install", "network_access", "script_execution"],
+  "examples": [{"command": "npm install", "explanation": "Install dependencies from package.json."}],
+  "templates": [
+    {"command": "npm install {package}", "description": "Install a JavaScript package."},
+    {"command": "npm run <script>", "description": "Run a package script."}
+  ]
+}
