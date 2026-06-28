@@ -93,7 +93,7 @@ checkout without installing the package first.
 
 ```bash
 commandgraph search "what is using port 3000"
-commandgraph search "make file runnable" --json
+cmdgraph search "make file runnable" --json
 commandgraph search 'find files named "*.py" in ./src'
 commandgraph explain chmod
 commandgraph check "cat .env" --json

@@ -41,6 +41,7 @@ def test_package_install_exposes_cli_entrypoints(tmp_path):
         cwd=PROJECT_ROOT,
     )
 
+    outputs = []
     for script_name in ('commandgraph', 'cmdgraph'):
         result = subprocess.run(
             [str(_venv_script(venv_path, script_name)), '--help'],
@@ -50,3 +51,6 @@ def test_package_install_exposes_cli_entrypoints(tmp_path):
             capture_output=True,
         )
         assert 'Intent-aware command discovery and safety checks.' in result.stdout
+        outputs.append(result.stdout)
+
+    assert outputs[0] == outputs[1]
