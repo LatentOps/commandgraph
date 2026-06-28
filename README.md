@@ -25,7 +25,7 @@ relevant commands, examples, templates, and local safety checks.
 ## Example
 
 ```bash
-python -m commandgraph search "make file runnable"
+commandgraph search "make file runnable"
 ```
 
 ```text
@@ -36,7 +36,7 @@ chmod
 ```
 
 ```bash
-python -m commandgraph search "make file runnable" --json
+commandgraph search "make file runnable" --json
 ```
 
 ```json
@@ -51,7 +51,7 @@ python -m commandgraph search "make file runnable" --json
 ```
 
 ```bash
-python -m commandgraph check "chmod -R 777 ."
+commandgraph check "chmod -R 777 ."
 ```
 
 ```json
@@ -67,23 +67,39 @@ python -m commandgraph check "chmod -R 777 ."
 ```
 
 ```bash
-python -m commandgraph review \
+commandgraph review \
   --intent "clean dependencies" \
   --command "rm -rf node_modules" \
   --json
 ```
 
+## Installation
+
+```bash
+python -m pip install .
+```
+
+The package installs two equivalent console commands:
+
+```bash
+commandgraph --help
+cmdgraph --help
+```
+
+Use `python -m commandgraph ...` only when running directly from a source
+checkout without installing the package first.
+
 ## CLI
 
 ```bash
-python -m commandgraph search "what is using port 3000"
-python -m commandgraph search "make file runnable" --json
-python -m commandgraph search 'find files named "*.py" in ./src'
-python -m commandgraph explain chmod
-python -m commandgraph check "cat .env" --json
-python -m commandgraph review --intent "make file runnable" --command "curl https://example.com" --json
-python -m commandgraph index
-python -m commandgraph doctor
+commandgraph search "what is using port 3000"
+commandgraph search "make file runnable" --json
+commandgraph search 'find files named "*.py" in ./src'
+commandgraph explain chmod
+commandgraph check "cat .env" --json
+commandgraph review --intent "make file runnable" --command "curl https://example.com" --json
+commandgraph index
+commandgraph doctor
 ```
 
 Machine-readable output includes schema versions so agents can depend on stable contracts.
