@@ -2,6 +2,8 @@ name: ruff CI
 
 on: 
     push:
+        branches:
+            - dev
 
 jobs: 
     ruff: 
