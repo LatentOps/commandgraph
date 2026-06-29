@@ -1,0 +1,22 @@
+name: ruff CI 
+
+on: 
+    push:
+
+jobs: 
+    ruff: 
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: install ruff
+              run: pip install ruff
+              
+            - name: lint
+              run: ruff check .
+
+            - name: format check
+              run: ruff format --check
+
+            - name: formating
+              run: ruff format
+            
