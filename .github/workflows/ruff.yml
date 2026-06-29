@@ -1,10 +1,7 @@
 name: ruff CI 
 
 on: 
-    push:
-        # branches:
-        #     - dev
-
+    push
 jobs: 
     ruff: 
         runs-on: ubuntu-latest

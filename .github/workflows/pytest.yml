@@ -1,9 +1,7 @@
 name: pytest CI
 
 on: 
-    push: 
-        # branches:
-        #     - dev
+    push
 
 jobs:
 
